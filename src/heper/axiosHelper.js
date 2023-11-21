@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const rootAPI = "process.env.REACT_APP_ROOTAPI";
+const rootAPI = process.env.REACT_APP_ROOTAPI;
 const userApi = rootAPI + "/user";
 const transApi = rootAPI + "/transaction";
 
