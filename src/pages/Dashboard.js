@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { TopNav } from "../components/TopNav";
-import { TransForm } from "../components/TransForm";
-import { TransTable } from "../components/TransTable";
+import React, { useState, useEffect } from "react";
+import { Button, Container } from "react-bootstrap";
 import { getTrans } from "../heper/axiosHelper";
+import { TransForm } from "../components/TransForm";
+import { TopNav } from "../components/TopNav";
+import { TransTable } from "../components/TransTable";
 import { CustomModal } from "../components/CustomModal";
-import { Button } from "react-bootstrap";
+import { FooterSection } from "../components/FooterSection";
 
 const Dashboard = () => {
   const [transList, setTransList] = useState([]);
 
-  const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = React.useState(false);
 
   useEffect(() => {
     getAllTrans();
@@ -22,24 +23,31 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
-      {/* Navbar */}
+    <div className="">
+      {/* navbar */}
       <TopNav />
-      {/* form */}
-      <CustomModal show={modalShow} onHide={() => setModalShow(false)}>
-        <TransForm getAllTrans={getAllTrans} />
-      </CustomModal>
 
-      {/* This will triger modal pop up */}
-      <div className="text-end mt-5">
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-          Add new transactions
-        </Button>
-      </div>
-      {/* table */}
+      <Container fluid={true} style={{ width: "90%" }}>
+        {/* form */}
 
-      <TransTable transList={transList} getAllTrans={getAllTrans} />
+        <CustomModal show={modalShow} onHide={() => setModalShow(false)}>
+          <TransForm getAllTrans={getAllTrans} />
+        </CustomModal>
+
+        <div className="d-flex justify-content-end mt-5 gap-3">
+          <Button variant="primary" onClick={() => setModalShow(true)}>
+            Add New Transaction
+          </Button>
+        </div>
+
+        {/* table */}
+        <TransTable transList={transList} getAllTrans={getAllTrans} />
+      </Container>
+
+      {/* footer */}
+      <FooterSection />
     </div>
   );
 };
+
 export default Dashboard;

@@ -9,8 +9,6 @@ export const TransForm = ({ getAllTrans }) => {
 
   const [resp, setResp] = useState({});
 
-  const [pending, setPending] = useState(false);
-
   const inputs = [
     {
       label: "Date",

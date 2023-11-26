@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { SignupForm } from "../components/SignupForm";
+import { FooterSection } from "../components/FooterSection";
 import { TopNav } from "../components/TopNav";
 const SignupPage = () => {
   return (
@@ -15,12 +16,15 @@ const SignupPage = () => {
             </div>
           </Col>
           <Col className="d-flex justify-content-center align-items-center ">
-            <div className="shadow-lg p-3 border rounded">
+            <div className="shadow-lg px-5 py-3 border rounded">
               <h2>Signup Now</h2>
               <hr />
               <SignupForm />
             </div>
           </Col>
+        </Row>
+        <Row>
+          <FooterSection />
         </Row>
       </Container>
     </>

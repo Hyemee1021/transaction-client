@@ -68,19 +68,19 @@ export const TransTable = ({ transList, getAllTrans }) => {
         </Alert>
       )}
       <Table striped bordered hover>
-        <Button onClick={handleOnDelete}>Delete</Button>
         <thead>
           <tr>
-            <th>
-              <Form.Check
+            <th className="text-center">
+              {/* <Form.Check
                 onChange={handleOnAllCheck}
                 checked={idsToDelete.length === transList.length}
-              />
+              /> */}
               <input
+                checked={idsToDelete.length === transList.length}
                 type="checkbox"
                 value=""
                 onChange={handleOnAllCheck}
-                className="mx-2 w-4 h-4 border border-gray-300  bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                className=" mx-2 w-4 h-4 border border-gray-300  bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                 required
               />
             </th>
@@ -95,7 +95,7 @@ export const TransTable = ({ transList, getAllTrans }) => {
           {transList.map(({ _id, title, date, amount, type }) => (
             <tr>
               <td className="text-center">
-                <Form.Check value={_id} onChange={handleOnChecked} />
+                {/* <Form.Check value={_id} onChange={handleOnChecked} /> */}
                 <input
                   type="checkbox"
                   value={_id}
@@ -125,16 +125,22 @@ export const TransTable = ({ transList, getAllTrans }) => {
           <tr className="fw-bolder">
             <td colSpan={3}>
               <div className="d-flex justify-content-betwen text-end">
-                {idsToDelete.length > 0 && (
-                  <Button variant="danger">Delete</Button>
-                )}
-                <span>Total balance</span>
+                Total balance
               </div>
             </td>
-            <td>
+            <td colSpan={3} className="text-center">
               {transList.reduce((acc, { amount, type }) => {
                 return type === "income" ? acc + amount : acc - amount;
               }, 0)}
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={5}>
+              <div className="text-end">
+                {idsToDelete.length > 0 && (
+                  <Button variant="danger">Delete</Button>
+                )}
+              </div>
             </td>
           </tr>
         </tbody>
